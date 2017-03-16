@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-role-heroku-cli
+- name: Add Heroku toolbelt repo
+  apt_repository:
+    repo: deb https://cli-assets.heroku.com/branches/stable/apt ./
+
+- name: Run curl to grab toolbelt
+  shell: curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+
+- name: Install heroku and update package cache
+  apt: name='heroku' state=installed update_cache=yes
